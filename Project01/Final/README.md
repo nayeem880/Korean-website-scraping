@@ -6,7 +6,7 @@ beautifulsoup 4.9.3
 pandas 1.2.1
 
 
-### Folder Structure:
+### Folder Structure and workflow
 
 - First run `profile_link_extraction.py` . This will get all the profile links of around 4800+ from the target and will store in csv format named `new_profile_links.csv`
 and also will create a file named `updated_profile_links.csv` which means - links inside this file is brand new. They are new added to the website.
