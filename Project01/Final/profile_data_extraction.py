@@ -5,7 +5,7 @@ import pandas as pd
 from selenium import webdriver
 import time
 pd.options.display.max_columns = 999
-
+pd.options.display.max_rows = 999
 
 df = pd.read_csv('new_profile_links.csv')
 df = df.drop(['Unnamed: 0'], axis = 1) 
@@ -193,7 +193,6 @@ for i in range(len(pl)):
                 for ecom in commentdiv:
                     reviews_text.append(ecom.text)
 
-
         review_obj = []
         for i in range(len(reviews_user)):
             review_obj.append(reviews_user[i])
@@ -206,10 +205,8 @@ for i in range(len(pl)):
     except :
         driver.quit()
         print("Error")
-    
 
 try:
-
     df = pd.DataFrame(all_user)
     main = []
     for index, row in df.iterrows():
@@ -233,7 +230,6 @@ try:
 
         elif row[3] in ['음악/악기','미술/디자인','공예/공방','무용/ 발레','사진','실용/방송댄스','뮤지컬/공연','낚시','원예/홈가드닝','여행','글쓰기/논술']:
             main.append("취미")
-
 
         elif row[3] in ['외국어학습','입시/진학','해외유학','대학교학습','고등학교학습','중학교학습','초등학교학습']:
             main.append( '교육/학습')

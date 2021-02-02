@@ -5,6 +5,7 @@ import pandas as pd
 from selenium import webdriver
 import time
 pd.options.display.max_columns = 999
+pd.options.display.max_rows = 999
 
 df = pd.read_csv('updated_profile_links.csv')
 df = df.drop(['Unnamed: 0'], axis = 1) 
@@ -12,7 +13,8 @@ df["0"]
 pl = list(df["0"])
 all_user = []
 
-for i in range(len(pl):
+# 
+for i in range(len(pl)):
     try:
         one_user = []
         print("Loop :",i)
