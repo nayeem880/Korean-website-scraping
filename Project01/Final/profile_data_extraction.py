@@ -14,7 +14,7 @@ pl = list(df["0"])
 all_user = []
 
 
-for i in range(100):
+for i in range(len(pl)):
     try:
         one_user = []
         print("Loop :",i)
