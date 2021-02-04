@@ -20,7 +20,7 @@ for i in range(len(pl)):
         print("Loop :",i)
         url = pl[i]
         print(url)
-        driver = webdriver.Chrome(r'C:\Users\USER\chromedriver_win32\chromedriver.exe')
+        driver = webdriver.Chrome(r'C:\Users\David\chromedriver_win32\chromedriver.exe')
         driver.get(url)
         time.sleep(3)
 

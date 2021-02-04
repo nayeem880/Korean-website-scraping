@@ -70,7 +70,7 @@ for i in range(len(li)):
         max = 0 
         # program running here # program running here 
         # program running here # program running here 
-        driver = webdriver.Chrome(r'C:\Users\USER\chromedriver_win32\chromedriver.exe')
+        driver = webdriver.Chrome(r'C:\Users\David\chromedriver_win32\chromedriver.exe')
         url = "https://"+li[i]
         plinks = []
         ps(url)    
