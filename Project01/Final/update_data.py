@@ -1,4 +1,5 @@
 # importing the required modules
+# importing the required modules
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -6,6 +7,9 @@ from selenium import webdriver
 import time
 pd.options.display.max_columns = 999
 pd.options.display.max_rows = 999
+from selenium import webdriver
+options = webdriver.ChromeOptions()
+options.add_argument("headless")
 
 df = pd.read_csv('updated_profile_links.csv')
 df = df.drop(['Unnamed: 0'], axis = 1) 
@@ -20,7 +24,7 @@ for i in range(len(pl)):
         print("Loop :",i)
         url = pl[i]
         print(url)
-        driver = webdriver.Chrome(r'C:\Users\David\chromedriver_win32\chromedriver.exe')
+        driver = webdriver.Chrome(r'C:\Users\David\chromedriver_win32\chromedriver.exe', chrome_options=options)
         driver.get(url)
         time.sleep(3)
 

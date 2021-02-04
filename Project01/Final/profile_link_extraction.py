@@ -6,6 +6,10 @@ from selenium import webdriver
 import time
 pd.options.display.max_columns = 999
 pd.options.display.max_rows = 999
+from selenium import webdriver
+options = webdriver.ChromeOptions()
+options.add_argument("headless")
+
 
 df = pd.read_csv('Intermediate_links.csv')
 df = df.drop(['Unnamed: 0'], axis = 1) 
@@ -70,7 +74,7 @@ for i in range(len(li)):
         max = 0 
         # program running here # program running here 
         # program running here # program running here 
-        driver = webdriver.Chrome(r'C:\Users\David\chromedriver_win32\chromedriver.exe')
+        driver = webdriver.Chrome(r'C:\Users\David\chromedriver_win32\chromedriver.exe', chrome_options=options)
         url = "https://"+li[i]
         plinks = []
         ps(url)    
