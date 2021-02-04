@@ -1,12 +1,17 @@
 # importing the required modules
+# importing the required modules
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 from selenium import webdriver
 import time
-base = "https://class101.net"
 pd.options.display.max_columns = 999
 pd.options.display.max_rows = 999
+from selenium import webdriver
+options = webdriver.ChromeOptions()
+options.add_argument("headless")
+base = "https://class101.net"
+
 
 urls = pd.read_csv('parent_links.csv')
 urls = urls.drop(['Unnamed: 0'], axis = 1) 
@@ -26,7 +31,7 @@ for i in range(len(b)):
     ##########defininf function
     def scroll(url):
         count = 0
-        driver = webdriver.Chrome(r'C:\Users\David\chromedriver_win32\chromedriver.exe')
+        driver = webdriver.Chrome(r'C:\Users\David\chromedriver_win32\chromedriver.exe', chrome_options=options)
         scroll_pause_time = 5
         driver.get(url)
         time.sleep(3)
@@ -153,7 +158,7 @@ all_item = []
 for i in range(len(nlink)):
     url = nlink[i]
     item = []
-    driver = webdriver.Chrome(r'C:\Users\David\chromedriver_win32\chromedriver.exe')
+    driver = webdriver.Chrome(r'C:\Users\David\chromedriver_win32\chromedriver.exe', chrome_options=options)
     
     def getdata(url):
         print(url)
