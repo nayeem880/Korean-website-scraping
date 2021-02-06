@@ -4,6 +4,9 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from selenium import webdriver
 import time
+options = webdriver.ChromeOptions()
+options.add_argument("headless")
+
 pd.options.display.max_columns = 999
 pd.options.display.max_rows = 999
 df = pd.read_csv('../Data/profile_links.csv')
@@ -19,12 +22,12 @@ main_category = []
 
 
 length = len(pl)
-for i in range(200):
+for i in range(20):
     one_user = []
     print("Serial :",i)
     url = pl[i]
     print(url)
-    driver = webdriver.Chrome(r'C:\Users\kdemy\chromedriver_win32\chromedriver.exe')
+    driver = webdriver.Chrome(r'C:\Users\User\chromedriver_win32\chromedriver.exe', chrome_options=options)
     driver.get(url)
     time.sleep(5)
     
@@ -217,34 +220,34 @@ for i in range(len(basicdf["subcategory"])):
     if basicdf["subcategory"][i] in ['법률','노동/노무','지식재산/특허',"등기/공탁/법무",'민원/행정']:
         main_category.append(["법률", basicdf["subcategory"][i]])
 
-    elif row[3] in ['세금/세무','회계/감사','통관/관세','온라인 마케팅','온라인쇼핑몰','엑스퍼트 사업','경영/기술컨설팅','유통관리','가맹점창업','건축','번역/통역','날씨컨설팅','원가 분석']:
+    elif basicdf["subcategory"][i] in ['세금/세무','회계/감사','통관/관세','온라인 마케팅','온라인쇼핑몰','엑스퍼트 사업','경영/기술컨설팅','유통관리','가맹점창업','건축','번역/통역','날씨컨설팅','원가 분석']:
         main_category.append(["비즈니스", basicdf["subcategory"][i]])
         
-    elif row[3] in ['자산컨설팅','부동산 상담','손해사정','신용상담','감정평가']:
+    elif basicdf["subcategory"][i] in ['자산컨설팅','부동산 상담','손해사정','신용상담','감정평가']:
         main_category.append(["금융/재테크", basicdf["subcategory"][i]])
         
-    elif row[3] in ['심리상담','영양/다이어트','MBTI ']:
+    elif basicdf["subcategory"][i] in ['심리상담','영양/다이어트','MBTI ']:
         main_category.append(["건강", basicdf["subcategory"][i]])
         
-    elif row[3] in ['운세/사주','타로카드','작명','꿈해몽','관상','풍수']:
+    elif basicdf["subcategory"][i] in ['운세/사주','타로카드','작명','꿈해몽','관상','풍수']:
         main_category.append(["운세", basicdf["subcategory"][i]])
         
-    elif row[3] in ['펫 관리','연애','육아','명상','패션/스타일','뷰티','요리/홈쿠킹','커피/주류','인테리어','청소/세탁','교통사고 분석','자동차수리']:
+    elif basicdf["subcategory"][i] in ['펫 관리','연애','육아','명상','패션/스타일','뷰티','요리/홈쿠킹','커피/주류','인테리어','청소/세탁','교통사고 분석','자동차수리']:
         main_category.append(["생활", basicdf["subcategory"][i]])
         
-    elif row[3] in ['음악/악기','미술/디자인','공예/공방','무용/ 발레','사진','실용/방송댄스','뮤지컬/공연','낚시','원예/홈가드닝','여행','글쓰기/논술']:
+    elif basicdf["subcategory"][i] in ['음악/악기','미술/디자인','공예/공방','무용/ 발레','사진','실용/방송댄스','뮤지컬/공연','낚시','원예/홈가드닝','여행','글쓰기/논술']:
         main_category.append(["취미", basicdf["subcategory"][i]])
         
-    elif row[3] in ['외국어학습','입시/진학','해외유학','대학교학습','고등학교학습','중학교학습','초등학교학습']:
+    elif basicdf["subcategory"][i] in ['외국어학습','입시/진학','해외유학','대학교학습','고등학교학습','중학교학습','초등학교학습']:
         main_category.append(["교육/학습", basicdf["subcategory"][i]])
         
-    elif row[3] in ['피트니스','골프','필라테스','요가','생활스포츠','자전거','수상 스포츠','동계 스포츠','유아체육']:
+    elif basicdf["subcategory"][i] in ['피트니스','골프','필라테스','요가','생활스포츠','자전거','수상 스포츠','동계 스포츠','유아체육']:
         main_category.append(["운동/스포츠", basicdf["subcategory"][i]])
         
-    elif row[3] in ['게임하우투','IT노하우','코딩','오피스문서','동영상 제작']:
+    elif basicdf["subcategory"][i] in ['게임하우투','IT노하우','코딩','오피스문서','동영상 제작']:
         main_category.append(["IT/컨텐츠", basicdf["subcategory"][i]])
         
-    elif row[3] in ['라이프 코칭','취업','자기PR','공무원시험 ','자격증시험']:
+    elif basicdf["subcategory"][i] in ['라이프 코칭','취업','자기PR','공무원시험 ','자격증시험']:
         main_category.append(["자기계발", basicdf["subcategory"][i]])
         
     else:
