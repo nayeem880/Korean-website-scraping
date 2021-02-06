@@ -27,7 +27,7 @@ for i in range(200):
     print("Serial :",i)
     url = pl[i]
     print(url)
-    driver = webdriver.Chrome(r'C:\Users\User\chromedriver_win32\chromedriver.exe', chrome_options=options)
+    driver = webdriver.Chrome(r'C:\Users\David\chromedriver_win32\chromedriver.exe', chrome_options=options)
     driver.get(url)
     time.sleep(5)
     
