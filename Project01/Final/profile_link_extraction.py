@@ -6,10 +6,6 @@ from selenium import webdriver
 import time
 pd.options.display.max_columns = 999
 pd.options.display.max_rows = 999
-from selenium import webdriver
-options = webdriver.ChromeOptions()
-options.add_argument("headless")
-
 
 df = pd.read_csv('Intermediate_links.csv')
 df = df.drop(['Unnamed: 0'], axis = 1) 
@@ -66,7 +62,8 @@ def click():
     time.sleep(3)
     start()
     print("click")  #app > div > div > div.content--jBp3G > div.expertNextPage > a.pageLink.linkNext > span
-    
+   
+#for testing purpose we are using 5. replace 5 with len(li) later you run the code
 for i in range(len(li)):
     try:
         print("Serial:", i)
@@ -74,7 +71,7 @@ for i in range(len(li)):
         max = 0 
         # program running here # program running here 
         # program running here # program running here 
-        driver = webdriver.Chrome(r'C:\Users\David\chromedriver_win32\chromedriver.exe', chrome_options=options)
+        driver = webdriver.Chrome(r'C:\Users\David\chromedriver_win32\chromedriver.exe')
         url = "https://"+li[i]
         plinks = []
         ps(url)    
@@ -86,6 +83,7 @@ for i in range(len(li)):
         driver.quit()
     except:
         print("ERROR")
+        driver.quit()
         
 
 try:

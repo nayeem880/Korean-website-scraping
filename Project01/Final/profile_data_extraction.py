@@ -1,5 +1,4 @@
 # importing the required modules
-# importing the required modules
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -7,9 +6,6 @@ from selenium import webdriver
 import time
 pd.options.display.max_columns = 999
 pd.options.display.max_rows = 999
-from selenium import webdriver
-options = webdriver.ChromeOptions()
-options.add_argument("headless")
 
 df = pd.read_csv('new_profile_links.csv')
 df = df.drop(['Unnamed: 0'], axis = 1) 
@@ -24,7 +20,7 @@ for i in range(len(pl)):
         print("Loop :",i)
         url = pl[i]
         print(url)
-        driver = webdriver.Chrome(r'C:\Users\David\chromedriver_win32\chromedriver.exe', chrome_options=options)
+        driver = webdriver.Chrome(r'C:\Users\David\chromedriver_win32\chromedriver.exe')
         driver.get(url)
         time.sleep(3)
 
@@ -54,30 +50,7 @@ for i in range(len(pl)):
             basic.append(a)
 
 
-        #profile informations
-        profile = []
-        heading = soup.find_all('strong', class_ = 'introduceMainTitle--2MZc-')
-        for h in heading:
-            profile.append(h.text)
-
-        text = soup.find_all('p', class_ = 'introduceText--2R5pY')
-        for e in text:
-            profile.append(e.text)
-            
-        #new section
-        recom = soup.find_all('ul', class_ = 'listDisc--1Cc80')
-        for rc in recom:
-            profile.append(rc.text)
-            
-
-        rest = soup.find_all('div', class_ = ['profileCareer--3_uFh','isExpert--2GkDA'])     
-#         for mm in rest:  
-#             mm.find_all('div', class_ = 'profileBox--1jlog')
-        for m in rest:
-            m.find_all('div', class_ = "careerJob--2-hX4")
-            for i in m:
-                profile.append(i.text)
-                
+       
 
         ### Project data for one user
         maininfo = []
@@ -105,6 +78,38 @@ for i in range(len(pl)):
                 products.append(ce)
 
 
+                
+                
+        #profile informations
+        profile = []
+        heading = soup.find_all('strong', class_ = 'introduceMainTitle--2MZc-')
+        for h in heading:
+            profile.append(h.text)
+
+        text = soup.find_all('p', class_ = 'introduceText--2R5pY')
+        for e in text:
+            profile.append(e.text)
+            
+        #new section
+        recom = soup.find_all('ul', class_ = 'listDisc--1Cc80')
+        for rc in recom:
+            profile.append(rc.text)
+            
+
+        rest = soup.find_all('div', class_ = ['profileCareer--3_uFh','isExpert--2GkDA'])     
+#         for mm in rest:  
+#             mm.find_all('div', class_ = 'profileBox--1jlog')
+        for m in rest:
+            m.find_all('div', class_ = "careerJob--2-hX4")
+            for i in m:
+                profile.append(i.text)
+                      
+                
+                
+                
+                
+                
+                
         ### Project data for one user
         projects = soup.find_all('div', class_ = 'listArea--peDdh')
         #projects  and consultations 
@@ -168,7 +173,22 @@ for i in range(len(pl)):
                     proj[i] = proj[i].replace(lis[j], " ")
 
 
-
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
         rdiv = soup.find_all('div', class_ = "listSection--kViCl")
         reviews_user = []
         reviews_rating = []
@@ -210,6 +230,16 @@ for i in range(len(pl)):
         driver.quit()
         print("Error")
 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 try:
     df = pd.DataFrame(all_user)
     main = []
@@ -255,3 +285,61 @@ try:
 
 except:
     print("Error occured during data load to pd df")
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+#     ######################################### Project data section ########################################
+#     ## Project data for one user
+#     projects = soup.find_all('div', class_ = 'listArea--peDdh')
+#     #projects  and consultations 
+#     one = []   
+#     for y in projects:
+#         yy = y.find_all('div', class_ = 'item--1ZJSx')
+#         for t in yy:
+#             project_item = []
+#             adiv = t.find_all('a', class_ =['itemCard--2Whvq','ItemSmallThumbnail_itemCard--196nY','productCard--1WjeX'])
+#             for div in adiv:
+#                 eachdiv = div.find_all('div', class_ =['itemLink--2ljnw'])
+#                 for e in eachdiv:
+#                     ed = e.find_all('div', class_ =['itemBox--3y657'])
+#                     for each in ed:
+#                         ee = each.find_all('div', class_ =['itemInfo--24tcX'])
+#                         for eee in ee:
+#                             title = eee.find_all('div', class_ =['itemTitle--2vWBq','elip2--nFWXY'])
+#                             for t in title:
+#                                 project_item.append([t.text])
+                                
+#             title = project_item[0][0]
+#             print(title)
+            
+#             project_item.append(project_title)
+
+#             ratdiv = t.find_all('div', class_ =['itemGroup--2RnIL','ItemGroup_itemGroup--1f-on'])
+#             for rd in ratdiv:
+#                 each = rd.find_all('div')
+#                 for e in each:
+#                     project_item.append(e)
+
+#             feediv = t.find_all('div', class_ = ['itemPrice--cscFn','ItemPrice_itemPrice--1dTfW','alignCenter--2NQfI'])
+#             for fd in feediv:
+#                 fee = fd.find_all("span", class_ = ['priceNum--1rXJI','ItemPrice_priceNum--2OFHI'])
+#                 for f in fee:
+#                     project_item.append(f.text)   
+#             one.append([*project_item])   
+#     all_project.append(one)
+    
+#     p = []
+#     for i in range(len(all_project)):
+#         data = all_project[i]
+#         for j in range(len(data)):
+#             dj = data[j]
+#             for k in range(len(dj)):
+#                 bb = dj[k]
+#                 p.append(bb)
